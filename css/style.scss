@@ -1,0 +1,47 @@
+.open_times {
+  &__row {
+    display: grid;
+    max-width: 100%;
+    margin-bottom: 0.5rem;
+    @media (min-width: 768px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  &__label {
+    text-align: center;
+    @media (min-width: 768px) {
+      text-align: start;
+    }
+  }
+  &__times {
+    display: grid;
+    grid-template-columns: 1fr 30px 1fr;
+    div:not([class]) {
+      text-align: center;
+    }
+  }
+  &__closed {
+    grid-column: 1 / 4;
+  }
+  &__open {
+    text-align: end;
+    @media (min-width: 768px) {
+      text-align: center;
+    }
+  }
+  &__close {
+    text-align: start;
+    @media (min-width: 768px) {
+      text-align: center;
+    }
+  }
+  &__closed {
+    text-align: center;
+  }
+  .open_state {
+    margin-top: 0.5rem;
+  }
+  .today {
+    font-weight: bold;
+  }
+}

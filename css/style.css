@@ -1,0 +1,53 @@
+.open_times__row {
+  display: grid;
+  max-width: 100%;
+  margin-bottom: 0.5rem;
+}
+@media (min-width: 768px) {
+  .open_times__row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+.open_times__label {
+  text-align: center;
+}
+@media (min-width: 768px) {
+  .open_times__label {
+    text-align: start;
+  }
+}
+.open_times__times {
+  display: grid;
+  grid-template-columns: 1fr 30px 1fr;
+}
+.open_times__times div:not([class]) {
+  text-align: center;
+}
+.open_times__closed {
+  grid-column: 1/4;
+}
+.open_times__open {
+  text-align: end;
+}
+@media (min-width: 768px) {
+  .open_times__open {
+    text-align: center;
+  }
+}
+.open_times__close {
+  text-align: start;
+}
+@media (min-width: 768px) {
+  .open_times__close {
+    text-align: center;
+  }
+}
+.open_times__closed {
+  text-align: center;
+}
+.open_times .open_state {
+  margin-top: 0.5rem;
+}
+.open_times .today {
+  font-weight: bold;
+}/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,570 @@
+[
+    {
+        "key": "group_659993b77e6c1",
+        "title": "Open Now?",
+        "fields": [
+            {
+                "key": "field_659995a610435",
+                "label": "Open Message",
+                "name": "open_message",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "maxlength": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": ""
+            },
+            {
+                "key": "field_659995b110436",
+                "label": "Closed Message",
+                "name": "closed_message",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "maxlength": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": ""
+            },
+            {
+                "key": "field_65999a6b39fc5",
+                "label": "Monday",
+                "name": "monday",
+                "aria-label": "",
+                "type": "group",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "layout": "block",
+                "sub_fields": [
+                    {
+                        "key": "field_65999a7e39fc6",
+                        "label": "Label",
+                        "name": "label",
+                        "aria-label": "",
+                        "type": "text",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "33",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "Monday",
+                        "maxlength": "",
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": ""
+                    },
+                    {
+                        "key": "field_65999a9939fc7",
+                        "label": "Open",
+                        "name": "open",
+                        "aria-label": "",
+                        "type": "time_picker",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "33",
+                            "class": "",
+                            "id": ""
+                        },
+                        "display_format": "g:i a",
+                        "return_format": "g:i a"
+                    },
+                    {
+                        "key": "field_65999ab339fc8",
+                        "label": "Close",
+                        "name": "close",
+                        "aria-label": "",
+                        "type": "time_picker",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "33",
+                            "class": "",
+                            "id": ""
+                        },
+                        "display_format": "g:i a",
+                        "return_format": "g:i a"
+                    }
+                ]
+            },
+            {
+                "key": "field_65999ae01f2db",
+                "label": "Tuesday",
+                "name": "tuesday",
+                "aria-label": "",
+                "type": "group",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "layout": "block",
+                "sub_fields": [
+                    {
+                        "key": "field_65999ae01f2dc",
+                        "label": "Label",
+                        "name": "label",
+                        "aria-label": "",
+                        "type": "text",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "33",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "Tuesday",
+                        "maxlength": "",
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": ""
+                    },
+                    {
+                        "key": "field_65999ae01f2dd",
+                        "label": "Open",
+                        "name": "open",
+                        "aria-label": "",
+                        "type": "time_picker",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "33",
+                            "class": "",
+                            "id": ""
+                        },
+                        "display_format": "g:i a",
+                        "return_format": "g:i a"
+                    },
+                    {
+                        "key": "field_65999ae01f2de",
+                        "label": "Close",
+                        "name": "close",
+                        "aria-label": "",
+                        "type": "time_picker",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "33",
+                            "class": "",
+                            "id": ""
+                        },
+                        "display_format": "g:i a",
+                        "return_format": "g:i a"
+                    }
+                ]
+            },
+            {
+                "key": "field_65999af01f2df",
+                "label": "Wednesday",
+                "name": "wednesday",
+                "aria-label": "",
+                "type": "group",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "layout": "block",
+                "sub_fields": [
+                    {
+                        "key": "field_65999af01f2e0",
+                        "label": "Label",
+                        "name": "label",
+                        "aria-label": "",
+                        "type": "text",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "33",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "Wednesday",
+                        "maxlength": "",
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": ""
+                    },
+                    {
+                        "key": "field_65999af01f2e1",
+                        "label": "Open",
+                        "name": "open",
+                        "aria-label": "",
+                        "type": "time_picker",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "33",
+                            "class": "",
+                            "id": ""
+                        },
+                        "display_format": "g:i a",
+                        "return_format": "g:i a"
+                    },
+                    {
+                        "key": "field_65999af01f2e2",
+                        "label": "Close",
+                        "name": "close",
+                        "aria-label": "",
+                        "type": "time_picker",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "33",
+                            "class": "",
+                            "id": ""
+                        },
+                        "display_format": "g:i a",
+                        "return_format": "g:i a"
+                    }
+                ]
+            },
+            {
+                "key": "field_65999b031f2e3",
+                "label": "Thursday",
+                "name": "thursday",
+                "aria-label": "",
+                "type": "group",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "layout": "block",
+                "sub_fields": [
+                    {
+                        "key": "field_65999b041f2e4",
+                        "label": "Label",
+                        "name": "label",
+                        "aria-label": "",
+                        "type": "text",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "33",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "Thursday",
+                        "maxlength": "",
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": ""
+                    },
+                    {
+                        "key": "field_65999b041f2e5",
+                        "label": "Open",
+                        "name": "open",
+                        "aria-label": "",
+                        "type": "time_picker",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "33",
+                            "class": "",
+                            "id": ""
+                        },
+                        "display_format": "g:i a",
+                        "return_format": "g:i a"
+                    },
+                    {
+                        "key": "field_65999b041f2e6",
+                        "label": "Close",
+                        "name": "close",
+                        "aria-label": "",
+                        "type": "time_picker",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "33",
+                            "class": "",
+                            "id": ""
+                        },
+                        "display_format": "g:i a",
+                        "return_format": "g:i a"
+                    }
+                ]
+            },
+            {
+                "key": "field_65999b151f2e7",
+                "label": "Friday",
+                "name": "friday",
+                "aria-label": "",
+                "type": "group",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "layout": "block",
+                "sub_fields": [
+                    {
+                        "key": "field_65999b151f2e8",
+                        "label": "Label",
+                        "name": "label",
+                        "aria-label": "",
+                        "type": "text",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "33",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "Friday",
+                        "maxlength": "",
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": ""
+                    },
+                    {
+                        "key": "field_65999b151f2e9",
+                        "label": "Open",
+                        "name": "open",
+                        "aria-label": "",
+                        "type": "time_picker",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "33",
+                            "class": "",
+                            "id": ""
+                        },
+                        "display_format": "g:i a",
+                        "return_format": "g:i a"
+                    },
+                    {
+                        "key": "field_65999b151f2ea",
+                        "label": "Close",
+                        "name": "close",
+                        "aria-label": "",
+                        "type": "time_picker",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "33",
+                            "class": "",
+                            "id": ""
+                        },
+                        "display_format": "g:i a",
+                        "return_format": "g:i a"
+                    }
+                ]
+            },
+            {
+                "key": "field_65999b221f2eb",
+                "label": "Saturday",
+                "name": "saturday",
+                "aria-label": "",
+                "type": "group",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "layout": "block",
+                "sub_fields": [
+                    {
+                        "key": "field_65999b221f2ec",
+                        "label": "Label",
+                        "name": "label",
+                        "aria-label": "",
+                        "type": "text",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "33",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "Saturday",
+                        "maxlength": "",
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": ""
+                    },
+                    {
+                        "key": "field_65999b221f2ed",
+                        "label": "Open",
+                        "name": "open",
+                        "aria-label": "",
+                        "type": "time_picker",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "33",
+                            "class": "",
+                            "id": ""
+                        },
+                        "display_format": "g:i a",
+                        "return_format": "g:i a"
+                    },
+                    {
+                        "key": "field_65999b221f2ee",
+                        "label": "Close",
+                        "name": "close",
+                        "aria-label": "",
+                        "type": "time_picker",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "33",
+                            "class": "",
+                            "id": ""
+                        },
+                        "display_format": "g:i a",
+                        "return_format": "g:i a"
+                    }
+                ]
+            },
+            {
+                "key": "field_65999b331f2ef",
+                "label": "Sunday",
+                "name": "sunday",
+                "aria-label": "",
+                "type": "group",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "layout": "block",
+                "sub_fields": [
+                    {
+                        "key": "field_65999b331f2f0",
+                        "label": "Label",
+                        "name": "label",
+                        "aria-label": "",
+                        "type": "text",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "33",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "Sunday",
+                        "maxlength": "",
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": ""
+                    },
+                    {
+                        "key": "field_65999b331f2f1",
+                        "label": "Open",
+                        "name": "open",
+                        "aria-label": "",
+                        "type": "time_picker",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "33",
+                            "class": "",
+                            "id": ""
+                        },
+                        "display_format": "g:i a",
+                        "return_format": "g:i a"
+                    },
+                    {
+                        "key": "field_65999b331f2f2",
+                        "label": "Close",
+                        "name": "close",
+                        "aria-label": "",
+                        "type": "time_picker",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "33",
+                            "class": "",
+                            "id": ""
+                        },
+                        "display_format": "g:i a",
+                        "return_format": "g:i a"
+                    }
+                ]
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "options_page",
+                    "operator": "==",
+                    "value": "lc-acf-options-page"
+                }
+            ]
+        ],
+        "menu_order": 0,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": "",
+        "show_in_rest": 0
+    }
+]
