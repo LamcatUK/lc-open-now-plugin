@@ -103,12 +103,12 @@ function lc_acf_init() {
 			)
 		);
     }
-    $acf_fields_path = plugin_dir_path( __FILE__ ) . 'lc-open_now--acf.php';
+    $acf_fields_path = plugin_dir_path( __FILE__ ) . 'lc-open-now--acf.php';
 
     if ( file_exists( $acf_fields_path ) ) {
         include_once $acf_fields_path;
     } else {
-        error_log( 'LC Open Now? acf_field_path not found: ' . $acf_fields_path );
+        error_log( 'LC Open Now? acf_field_path not found: ' . $acf_fields_path ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
     }
 }
 add_action( 'acf/init', 'lc_acf_init' );
@@ -175,9 +175,10 @@ function output_state() {
 /**
  * Outputs the weekly opening times for each day.
  *
+ * @param bool $include_schema Whether to include Schema.org markup. Default true.
  * @return string HTML output of the opening times.
  */
-function output_opening_times() {
+function output_opening_times( $include_schema = true ) {
     ob_start();
     $days = array( 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday' );
     echo '<div class="open_times">';
@@ -217,14 +218,21 @@ function output_opening_times() {
     	<?php
     }
     echo '</div>';
+
+	if ( $include_schema ) {
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		echo get_opening_hours_schema();
+	}
+
     return ob_get_clean();
 }
 /**
  * Outputs a condensed weekly opening times schedule, grouping consecutive days with identical times.
  *
+ * @param bool $include_schema Whether to include Schema.org markup. Default true.
  * @return string HTML output of the condensed opening times.
  */
-function output_opening_times_short() {
+function output_opening_times_short( $include_schema = true ) {
     $days   = array( 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday' );
     $labels = array();
     $times  = array();
@@ -288,6 +296,11 @@ function output_opening_times_short() {
         $start = $end + 1;
     }
     $output .= '</div>';
+
+	if ( $include_schema ) {
+		$output .= get_opening_hours_schema();
+	}
+
     return $output;
 }
 
@@ -348,7 +361,8 @@ add_action( 'wp_ajax_nopriv_lc_open_now_action', 'lc_open_now_ajax_handler' );
  * Outputs all status and times, then terminates the request.
  */
 function lc_open_now_ajax_handler() {
-    echo wp_kses_post( output_all() );
+	// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+    echo output_all();
     wp_die(); // This is required to terminate immediately and return a proper response.
 }
 
@@ -367,6 +381,124 @@ function is_today( $d ) {
 
     return 'today';
 }
+
+/**
+ * Gets the opening hours specification array for Schema.org.
+ *
+ * Returns an array of OpeningHoursSpecification objects that can be
+ * used in existing LocalBusiness or Organization schemas.
+ *
+ * @return array Array of OpeningHoursSpecification objects.
+ */
+function get_opening_hours_specification_array() {
+	$days          = array( 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday' );
+	$day_mapping   = array(
+		'Monday'    => 'Monday',
+		'Tuesday'   => 'Tuesday',
+		'Wednesday' => 'Wednesday',
+		'Thursday'  => 'Thursday',
+		'Friday'    => 'Friday',
+		'Saturday'  => 'Saturday',
+		'Sunday'    => 'Sunday',
+	);
+	$opening_hours = array();
+	$grouped_hours = array();
+
+	// Collect all opening hours.
+	foreach ( $days as $day ) {
+		$times = get_field( strtolower( $day ), 'options' );
+		$open  = $times['open'] ?? '';
+		$close = $times['close'] ?? '';
+
+		if ( '' !== $open && '' !== $close ) {
+			// Convert to 24-hour format.
+			$open_24  = convert_to_24h( $open );
+			$close_24 = convert_to_24h( $close );
+
+			$key = $open_24 . '-' . $close_24;
+			if ( ! isset( $grouped_hours[ $key ] ) ) {
+				$grouped_hours[ $key ] = array(
+					'days'   => array(),
+					'opens'  => $open_24,
+					'closes' => $close_24,
+				);
+			}
+			$grouped_hours[ $key ]['days'][] = $day_mapping[ $day ];
+		}
+	}
+
+	// Build OpeningHoursSpecification entries.
+	foreach ( $grouped_hours as $group ) {
+		$opening_hours[] = array(
+			'@type'     => 'OpeningHoursSpecification',
+			'dayOfWeek' => $group['days'],
+			'opens'     => $group['opens'],
+			'closes'    => $group['closes'],
+		);
+	}
+
+	return $opening_hours;
+}
+
+/**
+ * Generates OpeningHoursSpecification Schema.org markup as JSON-LD.
+ *
+ * Creates structured data compatible with existing Organization/LocalBusiness schemas.
+ * NOTE: Only outputs if 'lc_output_opening_hours_schema' filter returns true.
+ * By default, this is disabled to avoid duplicate schemas.
+ *
+ * @return string JSON-LD script tag with opening hours schema, or empty string.
+ */
+function get_opening_hours_schema() {
+	// Allow themes to disable schema output if they handle it themselves.
+	if ( ! apply_filters( 'lc_output_opening_hours_schema', false ) ) {
+		return '';
+	}
+
+	$opening_hours = get_opening_hours_specification_array();
+
+	// Only output if there are opening hours.
+	if ( empty( $opening_hours ) ) {
+		return '';
+	}
+
+	// Build complete LocalBusiness schema.
+	$schema = array(
+		'@context'                  => 'https://schema.org',
+		'@type'                     => 'LocalBusiness',
+		'@id'                       => get_bloginfo( 'url' ) . '#localbusiness',
+		'openingHoursSpecification' => $opening_hours,
+	);
+
+	// Allow filtering to merge with or extend existing schema.
+	$schema = apply_filters( 'lc_opening_hours_schema', $schema );
+
+	ob_start();
+	?>
+	<script type="application/ld+json">
+	<?php
+	// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+	echo wp_json_encode( $schema, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT );
+	?>
+	</script>
+	<?php
+	return ob_get_clean();
+}
+
+/**
+ * Converts 12-hour time format to 24-hour format for Schema.org.
+ *
+ * @param string $time Time in 'g:i a' format (e.g., '9:00 am').
+ * @return string Time in 'H:i:s' format (e.g., '09:00:00').
+ */
+function convert_to_24h( $time ) {
+	$dt = DateTime::createFromFormat( 'g:i a', $time );
+	if ( ! $dt ) {
+		return '';
+	}
+	return $dt->format( 'H:i:s' );
+}
+
 
 
 /**
@@ -400,8 +532,9 @@ function is_open( $open, $close ) {
  */
 function output_all() {
     ob_start();
-    echo wp_kses_post( output_opening_times() );
     echo wp_kses_post( output_state() );
+	// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+    echo output_opening_times();
     return ob_get_clean();
 }
 
@@ -412,8 +545,9 @@ function output_all() {
  */
 function output_opening_times_short_ajax() {
     ob_start();
-    echo wp_kses_post( output_opening_times_short() );
     echo wp_kses_post( output_state() );
+	// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+    echo output_opening_times_short();
     return ob_get_clean();
 }
 
@@ -421,7 +555,8 @@ function output_opening_times_short_ajax() {
  * AJAX handler for condensed opening times and open state.
  */
 function lc_opening_times_short_ajax_handler() {
-    echo wp_kses_post( output_opening_times_short_ajax() );
+	// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+    echo output_opening_times_short_ajax();
     wp_die();
 }
 add_action( 'wp_ajax_lc_opening_times_short_ajax', 'lc_opening_times_short_ajax_handler' );
